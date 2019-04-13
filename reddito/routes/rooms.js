@@ -3,6 +3,8 @@ const router = express.Router();
 
 const auth = require("./helpers/auth");
 const Room = require("../models/room");
+const posts = require("./posts");
+const Post = require("../models/post");
 
 // Rooms index
 router.get("/new", auth.requireLogin, (req, res, next) => {
@@ -11,7 +13,7 @@ router.get("/new", auth.requireLogin, (req, res, next) => {
 
 // Rooms new
 router.get("/", (req, res, next) => {
-  Room.find({}, "topic", function(err, rooms) {
+  :Post.find({ room: room}).populate('comments').exec(function(err, posts) {
     if (err) {
       console.error(err);
     } else {
@@ -27,7 +29,13 @@ router.get("/:id", auth.requireLogin, (req, res, next) => {
       console.error(err);
     }
 
-    res.render("rooms/show", { room: room });
+    Post.find({ room: room }, function(err, posts) {
+      if (err) {
+        console.error(err);
+      }
+
+      res.render("rooms/show", { room: room, posts: posts });
+    });
   });
 });
 
@@ -57,5 +65,7 @@ router.post("/:id", auth.requireLogin, (req, res, next) => {
 router.post("/", auth.requireLogin, (req, res, next) => {
   // TODO
 });
+
+router.use("/:roomId/posts", posts);
 
 module.exports = router;
