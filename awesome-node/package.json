@@ -1,5 +1,5 @@
 {
-  "name": "awesome-nodw",
+  "name": "awesome-node",
   "version": "0.0.0",
   "private": true,
   "engines": {
@@ -55,7 +55,6 @@
     "concurrently": "3.4.0",
     "css-loader": "0.27.3",
     "extract-text-webpack-plugin": "2.1.0",
-    "node-sass": "4.5.0",
     "nodemon": "1.11.0",
     "postcss-loader": "1.3.3",
     "sass-loader": "6.0.3",
