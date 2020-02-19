@@ -7,7 +7,7 @@ const session = require('express-session');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
-const port = 5000;
+const port = process.env.PORT || 5000;
 const exphbs = require('express-handlebars');
 // control prototype access in handlebars
 const Handlebars = require('handlebars');
@@ -20,8 +20,11 @@ const users = require('./routes/users');
 // Passport Config
 require('./config/passport')(passport);
 
+// DB config
+const db = require('./config/database');
+
 // Connect to mongoose
-mongoose.connect('mongodb://localhost/vidjot-dev')
+mongoose.connect(db.mongoURI)
   .then(() => console.log('MongoDB Connected...'))
   .catch(err => console.log(err));
 
