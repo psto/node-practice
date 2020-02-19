@@ -6,6 +6,7 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const passport = require('passport');
 const port = 5000;
 const exphbs = require('express-handlebars');
 // control prototype access in handlebars
@@ -15,6 +16,9 @@ const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-acce
 // Load routes
 const ideas = require('./routes/ideas');
 const users = require('./routes/users');
+
+// Passport Config
+require('./config/passport')(passport);
 
 // Connect to mongoose
 mongoose.connect('mongodb://localhost/vidjot-dev')
@@ -45,6 +49,10 @@ app.use(session({
   saveUninitialized: true,
 }));
 
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
 // flash middleware
 app.use(flash());
 
@@ -53,6 +61,7 @@ app.use((req,res,next) => {
   res.locals.success_msg = req.flash('success_msg');
   res.locals.error_msg = req.flash('error_msg');
   res.locals.error = req.flash('error');
+  res.locals.user = req.user || null;
   next();
 })
 
