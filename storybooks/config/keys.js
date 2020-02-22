@@ -1,5 +1,5 @@
-module.exports = {
-  mongoURI: 'mlab or other database link',
-  googleClientID: 'PASTE YOUR GOOGLE_CLIEND_ID here',
-  googleClientSecret: 'PASTE YOUR GOOGLE_CLIENT_SECRET here'
+if (process.env.NODE_ENV === 'production') {
+  module.exports = require('./keys_prod');
+} else {
+  module.exports = require('./keys_dev');
 }
