@@ -9,6 +9,7 @@ const http = axios.create({
 
 Vue.prototype.$http = http;
 
+
 Vue.use(BootstrapVue);
 
 Vue.config.productionTip = false;

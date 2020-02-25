@@ -43,9 +43,7 @@ app.use((err, req, res) => {
   res.render('error');
 });
 
-// Listen on port defined in environment
-app.listen(config.APP_PORT, () => {
-  console.log(`Listening on port ${config.APP_PORT}`);
-}); 
+app.listen(config.APP_PORT); // Listen on port defined in environment
+
 
 module.exports = app;

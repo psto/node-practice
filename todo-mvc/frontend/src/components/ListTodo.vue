@@ -52,7 +52,7 @@ export default {
   data() {
     return {
       todos: [],
-      doneLoading: false
+      doneLoading: true
     };
   },
   created: function() {
