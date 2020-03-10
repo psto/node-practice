@@ -1,35 +1,42 @@
 <template>
-  <v-layout column>
-    <v-container>
-      <div class="white elevation-2">
-        <v-toolbar flat dense class="cyan" dark>
-          <v-toolbar-title>Register</v-toolbar-title>
-        </v-toolbar>
+  <v-container class="fill-height" fluid>
+    <v-row align="center" justify="center">
+      <v-col cols="12" sm="8" md="4">
+        <v-card class="elevation-12">
+          <v-toolbar color="cyan" dark flat>
+            <v-toolbar-title>Register</v-toolbar-title>
+            <v-spacer />
+          </v-toolbar>
+          <v-card-text>
+            <v-form>
+              <v-text-field
+                v-model="email"
+                label="Email"
+                name="email"
+                type="email"
+              />
 
-        <div class="pl-4 pr-4 pt-2 pb-2">
-          <input
-            type="email"
-            name="email"
-            v-model="email"
-            placeholder="email"
-          />
-          <br />
-          <input
-            type="password"
-            name="password"
-            v-model="password"
-            placeholder="password"
-          />
-          <br />
-          <div class="error" v-html="error" />
-          <br />
-          <v-btn class="cyan" @click="register">
-            Register
-          </v-btn>
-        </div>
-      </div>
-    </v-container>
-  </v-layout>
+              <v-text-field
+                v-model="password"
+                label="Password"
+                name="password"
+                type="password"
+              />
+            </v-form>
+          </v-card-text>
+          <v-card-actions>
+            <br />
+            <div class="error" v-html="error" />
+            <br />
+            <v-spacer />
+            <v-btn class="cyan" @click="register">
+              Register
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -58,7 +65,7 @@ export default {
 </script>
 
 <style scoped>
-.error {
+/* .error {
   color: red;
-}
+} */
 </style>
